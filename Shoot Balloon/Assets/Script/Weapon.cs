@@ -6,13 +6,17 @@ public class Weapon : MonoBehaviour {
 
 	public GameObject Front;
 	public GameObject Back;
+	public GameObject BulletPrefab;
+	public Transform BulletSpawn;
 	public int BulletNum;
+	public int score;
 
 	private Vector3 shootDirection;
 
 	// Use this for initialization
 	void Start () {
 		BulletNum = 10;
+		score = 0;
 	}
 	
 	// Update is called once per frame
@@ -25,7 +29,21 @@ public class Weapon : MonoBehaviour {
 
 			//fire
 			if (Input.GetMouseButtonDown(0) && BulletNum >= 1) {
+
+				RaycastHit Hit;
 				shootDirection = Front.transform.position - Back.transform.position;
+				var bullet = (GameObject)Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation);
+				bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
+				BalloonSpawn B = Hit.transform.GetComponent<BalloonSpawn> ();
+
+				if (B != null) {
+					if (Hit.collider.name == "BalloonBlue" || Hit.collider.name == "BalloonGreen" || Hit.collider.name == "BalloonRed" 
+						|| Hit.collider.name == "BalloonYellow") {
+						Destroy (B.gameObject);
+						score++;
+					}
+				}
+
 				BulletNum--;
 			}
 

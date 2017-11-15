@@ -1049,7 +1049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &161134857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2176,7 +2176,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Front: {fileID: 68674466}
   Back: {fileID: 561214073}
-  BulletNum: 0
+  BulletPrefab: {fileID: 1240666069141428, guid: adcc808549f14436198556c1932c9052,
+    type: 2}
+  BulletSpawn: {fileID: 68674467}
+  BulletNum: 10
 --- !u!1 &609306445
 GameObject:
   m_ObjectHideFlags: 0

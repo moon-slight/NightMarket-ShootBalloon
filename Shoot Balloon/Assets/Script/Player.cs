@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		weaponscript = this.GetComponent<Weapon> ();
+		weaponscript = this.GetComponent<Weapon> (); // include Weapon.cs
 		MoveSpeed = 20;
 		RotateSpeed = 8;
 	}

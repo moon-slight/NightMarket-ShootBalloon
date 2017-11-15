@@ -19,19 +19,22 @@ public class system : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Result.enabled = false;
-		weaponscript = Player.GetComponent<Weapon>();
-		score = 0;
+		weaponscript = Player.GetComponent<Weapon>(); // include Weapon.cs
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		BulletCount = weaponscript.BulletNum;	
-		Score.text = score.ToString();
 		Bullet.text = BulletCount.ToString();
 
-		if (BulletCount == 0)
-			Result.enabled = true;
 
+		if (BulletCount == 0) {
+			score = weaponscript.score;	
+			Score.text = score.ToString();
+
+			Result.enabled = true;
+		}
 	}
 
 	public void Again()
