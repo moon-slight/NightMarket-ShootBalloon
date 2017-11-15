@@ -34,16 +34,18 @@ public class Weapon : MonoBehaviour {
 				shootDirection = Front.transform.position - Back.transform.position;
 				var bullet = (GameObject)Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation);
 				bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
-				BalloonSpawn B = Hit.transform.GetComponent<BalloonSpawn> ();
+				Ray ShootRay = new Ray (BulletSpawn.position, Vector3.Normalize(shootDirection));
+				if (Physics.Raycast (ShootRay, out Hit, 500f)) {
+					BalloonSpawn B = Hit.transform.GetComponent<BalloonSpawn> ();
 
-				if (B != null) {
-					if (Hit.collider.name == "BalloonBlue" || Hit.collider.name == "BalloonGreen" || Hit.collider.name == "BalloonRed" 
-						|| Hit.collider.name == "BalloonYellow") {
-						Destroy (B.gameObject);
-						score++;
+					if (B != null) {
+						if (Hit.collider.name == "BalloonBlue" || Hit.collider.name == "BalloonGreen" || Hit.collider.name == "BalloonRed"
+						   || Hit.collider.name == "BalloonYellow") {
+							Destroy (B.gameObject);
+							score++;
+						}
 					}
 				}
-
 				BulletNum--;
 			}
 
