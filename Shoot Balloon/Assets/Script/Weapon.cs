@@ -32,9 +32,8 @@ public class Weapon : MonoBehaviour {
 
 				RaycastHit Hit;
 				shootDirection = Front.transform.position - Back.transform.position;
-				var bullet = (GameObject)Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation);
-				bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
 				Ray ShootRay = new Ray (BulletSpawn.position, Vector3.Normalize(shootDirection));
+
 				if (Physics.Raycast (ShootRay, out Hit, 500f)) {
 					BalloonSpawn B = Hit.transform.GetComponent<BalloonSpawn> ();
 
